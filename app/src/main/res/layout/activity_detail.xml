@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    tools:context="pl.solaris.baseproject.activity.DetailActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_gravity="top"
+        android:background="@drawable/placeholder"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/photo"
+        android:padding="@dimen/abc_action_bar_default_padding_material"
+        android:text="@string/lore_ipsum"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse" />
+
+    <ImageButton
+        android:id="@+id/fabBtn"
+        android:layout_width="@dimen/btn_fab_size"
+        android:layout_height="@dimen/btn_fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/btn_fab_margins"
+        android:layout_marginEnd="@dimen/btn_fab_margins"
+        android:layout_marginRight="@dimen/btn_fab_margins"
+        android:background="@drawable/btn_fab_default"
+        android:elevation="@dimen/default_elevation"
+        android:src="@drawable/abc_ic_menu_share_mtrl_alpha"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
+</RelativeLayout>

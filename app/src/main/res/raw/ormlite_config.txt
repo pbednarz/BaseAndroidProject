@@ -1,0 +1,47 @@
+#
+# generated on 2015/02/06 08:44:08
+#
+# --table-start--
+dataClass=com.example.db.Album
+tableName=album
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=title
+columnName=_title
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=albumPhotos
+foreignCollection=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.example.db.Photo
+tableName=photo
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=album
+columnName=album_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=url
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
