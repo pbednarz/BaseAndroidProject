@@ -10,10 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.db.Album;
 import com.example.db.Photo;
-
-import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -25,7 +22,6 @@ import pl.solaris.baseproject.db.DatabaseManager;
 import pl.solaris.baseproject.service.Service;
 import rx.Subscription;
 import rx.android.app.AppObservable;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
@@ -58,9 +54,13 @@ public class PhotoListFragment extends Fragment implements OnItemClickListener {
         ButterKnife.inject(this, view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-        mAdapter = new PhotoAdapter(new Album.AlbumBuilder("Food").setPhotos(new ArrayList<Photo>()).build(), this);
+        mAdapter = new PhotoAdapter(null, this);
         recyclerView.setAdapter(mAdapter);
         refreshLayout.setOnRefreshListener(this::loadAlbum);
+        refreshLayout.setColorSchemeColors(R.color.primary_dark,
+                R.color.primary,
+                R.color.accent,
+                R.color.accent_dark);
         return view;
     }
 
@@ -69,9 +69,8 @@ public class PhotoListFragment extends Fragment implements OnItemClickListener {
         super.onViewCreated(view, savedInstanceState);
         databaseSubscription = AppObservable.bindFragment(this,
                 DatabaseManager.getInstance(getActivity().getApplicationContext())
-                        .getAlbumObservable(getArguments().getString(ALBUM_NAME_KEY)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                        .getAlbumObservable(getArguments().getString(ALBUM_NAME_KEY))
+                        .subscribeOn(Schedulers.io()))
                 .subscribe(album -> {
                     if (album != null) {
                         mAdapter.setAlbum(album);
@@ -84,13 +83,11 @@ public class PhotoListFragment extends Fragment implements OnItemClickListener {
         refreshLayout.setRefreshing(true);
         retrofitSubscription = AppObservable.bindFragment(this,
                 Service.getInstance(getActivity())
-                        .getNewClientInstance().getAlbum(getArguments().getString(ALBUM_NAME_KEY).toLowerCase()))
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
-                .doOnNext(album -> DatabaseManager.getInstance(getActivity()
-                        .getApplicationContext())
-                        .saveAlbum(album))
-                .observeOn(AndroidSchedulers.mainThread())
+                        .getNewClientInstance().getAlbum(getArguments().getString(ALBUM_NAME_KEY).toLowerCase())
+                        .doOnNext(album -> DatabaseManager.getInstance(getActivity()
+                                .getApplicationContext())
+                                .saveAlbum(album))
+                        .subscribeOn(Schedulers.io()))
                 .subscribe(album -> {
                     mAdapter.setAlbum(album);
                     mAdapter.notifyDataSetChanged();

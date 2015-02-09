@@ -47,7 +47,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         Photo photo = album.getPhotos().get(position);
         Service.getInstance(holder.image.getContext()).getPicasso().load(photo.url).placeholder(R.drawable.placeholder).into(holder.image);
-        holder.title.setText(String.format("Item %d", position));
+        holder.title.setText(String.format("Item %d", photo.id));
         holder.image.setOnClickListener(view -> {
             if (mListener.get() != null) mListener.get().onClick(view, position);
         });
