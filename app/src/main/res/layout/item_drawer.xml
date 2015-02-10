@@ -3,10 +3,11 @@
     android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="@dimen/abc_action_bar_default_height_material"
+    android:background="@drawable/list_bg_selector"
     android:drawableLeft="@drawable/abc_ic_go_search_api_mtrl_alpha"
     android:drawablePadding="@dimen/abc_action_bar_icon_vertical_padding_material"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:paddingLeft="@dimen/abc_dropdownitem_text_padding_left"
     android:paddingRight="@dimen/abc_dropdownitem_text_padding_right"
-    android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+    android:textAppearance="@style/TextAppearance.AppCompat.Menu" />

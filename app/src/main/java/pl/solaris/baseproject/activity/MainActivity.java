@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -70,6 +71,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         menuRecycler.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         menuRecycler.setAdapter(new NavigationAdapter(albums, this));
+        menuRecycler.setItemAnimator(new DefaultItemAnimator());
 
         selectItem(savedInstanceState != null ?
                 savedInstanceState.getInt(CURRENT_POSITION)

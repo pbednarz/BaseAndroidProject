@@ -5,4 +5,6 @@
     <color name="accent">#ff5252</color>
     <color name="accent_dark">#dd3041</color>
     <color name="shadow">#20FFFFFF</color>
+
+    <color name="white_semitransparent">#80ffffff</color>
 </resources>

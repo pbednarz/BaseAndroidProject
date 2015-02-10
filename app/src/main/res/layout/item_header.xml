@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="1dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:padding="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_header" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:layout_gravity="bottom|center_vertical"
+        android:background="#22000000"
+        android:drawablePadding="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:paddingLeft="@dimen/abc_dropdownitem_text_padding_left"
+        android:paddingRight="@dimen/abc_dropdownitem_text_padding_right"
+        android:text="Welcome, user!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
+
+    <ImageButton
+        android:id="@+id/profile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_margin="@dimen/abc_control_padding_material"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_account_circle_white_48dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/primary_material_dark" />
+</FrameLayout>

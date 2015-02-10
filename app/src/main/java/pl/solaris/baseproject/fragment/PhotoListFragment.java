@@ -72,29 +72,29 @@ public class PhotoListFragment extends Fragment implements OnItemClickListener {
                         .getAlbumObservable(getArguments().getString(ALBUM_NAME_KEY))
                         .subscribeOn(Schedulers.io()))
                 .subscribe(album -> {
-                    if (album != null) {
-                        mAdapter.setAlbum(album);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                }, exception -> loadAlbum(), this::loadAlbum);
+                            if (album != null) {
+                                mAdapter.setAlbum(album);
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        },
+                        exception -> loadAlbum(), this::loadAlbum);
     }
 
     private void loadAlbum() {
         refreshLayout.setRefreshing(true);
-        retrofitSubscription = AppObservable.bindFragment(this,
-                Service.getInstance(getActivity())
-                        .getNewClientInstance().getAlbum(getArguments().getString(ALBUM_NAME_KEY).toLowerCase())
-                        .doOnNext(album -> DatabaseManager.getInstance(getActivity()
-                                .getApplicationContext())
-                                .saveAlbum(album))
-                        .subscribeOn(Schedulers.io()))
+        retrofitSubscription = AppObservable.bindFragment(this, Service.getInstance(getActivity())
+                .getNewClientInstance().getAlbum(getArguments().getString(ALBUM_NAME_KEY).toLowerCase())
+                .doOnNext(album -> DatabaseManager.getInstance(getActivity().getApplicationContext())
+                        .saveAlbum(album))
+                .subscribeOn(Schedulers.io()))
                 .subscribe(album -> {
-                    mAdapter.setAlbum(album);
-                    mAdapter.notifyDataSetChanged();
-                }, exception -> {
-                    exception.printStackTrace();
-                    refreshLayout.setRefreshing(false);
-                }, () -> refreshLayout.setRefreshing(false));
+                            mAdapter.setAlbum(album);
+                            mAdapter.notifyDataSetChanged();
+                        },
+                        exception -> {
+                            exception.printStackTrace();
+                            refreshLayout.setRefreshing(false);
+                        }, () -> refreshLayout.setRefreshing(false));
     }
 
     @Override
