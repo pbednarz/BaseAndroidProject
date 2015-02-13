@@ -3,6 +3,7 @@ package pl.solaris.baseproject.activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -24,6 +26,7 @@ import pl.solaris.baseproject.R;
 import pl.solaris.baseproject.adapter.NavigationAdapter;
 import pl.solaris.baseproject.adapter.OnItemClickListener;
 import pl.solaris.baseproject.fragment.PhotoListFragment;
+import pl.solaris.baseproject.view.ScrimInsetsFrameLayout;
 
 /**
  * PGS-Software
@@ -36,8 +39,10 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
     Toolbar toolbar;
     @InjectView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
-    @InjectView(R.id.menu_drawer)
+    @InjectView(R.id.menu_recycler)
     RecyclerView menuRecycler;
+    @InjectView(R.id.navdrawer)
+    ScrimInsetsFrameLayout menuDrawer;
     private int mPosition = -1;
     private ActionBarDrawerToggle mDrawerToggle;
     private String[] albums = {"Food", "Sport"};
@@ -67,6 +72,19 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
+        if (menuDrawer != null) {
+            menuDrawer.setOnInsetsCallback(new ScrimInsetsFrameLayout.OnInsetsCallback() {
+                @Override
+                public void onInsetsChanged(Rect insets) {
+                    ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams)
+                            menuRecycler.getLayoutParams();
+                    lp.topMargin = insets.top;
+                    menuRecycler.setLayoutParams(lp);
+                }
+            });
+        }
+
         menuRecycler.setHasFixedSize(true);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         menuRecycler.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -130,7 +148,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
                     .commit();
             setTitle(albums[position]);
         }
-        mDrawerLayout.closeDrawer(menuRecycler);
+        mDrawerLayout.closeDrawer(menuDrawer);
     }
 
     @Override

@@ -11,5 +11,5 @@
         android:minHeight="@dimen/abc_action_bar_default_height_material"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextAppearance="@style/AppTheme.Toolbar.Title"
-        tools:showIn="@layout/activity_main"></android.support.v7.widget.Toolbar>
+        tools:showIn="@layout/activity_main" />
 </merge>

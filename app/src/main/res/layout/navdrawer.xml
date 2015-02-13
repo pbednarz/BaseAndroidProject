@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pl.solaris.baseproject.view.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navdrawer"
+    android:layout_width="@dimen/navdrawer_width"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/background_material_light"
+    android:fitsSystemWindows="true"
+    app:insetForeground="@color/material_deep_teal_500">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menu_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:scrollbars="vertical" />
+</pl.solaris.baseproject.view.ScrimInsetsFrameLayout>

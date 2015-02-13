@@ -24,14 +24,5 @@
             android:layout_gravity="start" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/menu_drawer"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/background_material_light"
-        android:choiceMode="singleChoice"
-        android:clipToPadding="false"
-        android:divider="@null"
-        android:scrollbars="vertical" />
+    <include layout="@layout/navdrawer" />
 </android.support.v4.widget.DrawerLayout>
