@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name">BaseProject</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_detail">DetailActivity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="lore_ipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem.
         Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.
