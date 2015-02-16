@@ -82,8 +82,8 @@ public class PhotoListFragment extends Fragment implements OnItemClickListener {
 
     private void loadAlbum() {
         refreshLayout.setRefreshing(true);
-        retrofitSubscription = AppObservable.bindFragment(this, Service.getInstance(getActivity())
-                .getNewClientInstance().getAlbum(getArguments().getString(ALBUM_NAME_KEY).toLowerCase())
+        final String albumName = getArguments().getString(ALBUM_NAME_KEY);
+        retrofitSubscription = AppObservable.bindFragment(this, Service.getAlbumObservable(getActivity(), albumName)
                 .doOnNext(album -> DatabaseManager.getInstance(getActivity().getApplicationContext())
                         .saveAlbum(album))
                 .subscribeOn(Schedulers.io()))

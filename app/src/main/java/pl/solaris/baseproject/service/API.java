@@ -11,6 +11,8 @@ import rx.Observable;
  * Created by pbednarz on 2015-01-16.
  */
 public interface API {
+    public static final String FOOD_ALBUM = "food";
+    public static final String SPORT_ALBUM = "sport";
 
     @GET("/{name}.json")
     Observable<Album> getAlbum(@Path("name") String albumName);

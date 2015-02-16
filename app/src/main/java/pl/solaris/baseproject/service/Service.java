@@ -2,14 +2,18 @@ package pl.solaris.baseproject.service;
 
 import android.content.Context;
 
+import com.example.db.Album;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import pl.solaris.baseproject.util.PicassoCacheHelper;
 import retrofit.RestAdapter;
 import retrofit.client.Client;
 import retrofit.client.OkClient;
+import rx.Observable;
 
 /**
  * PGS-Software
@@ -42,6 +46,17 @@ public class Service {
         return instance;
     }
 
+    public static Observable<List<Album>> getAllAlbumsObservable(Context context) {
+        return Observable.just(API.FOOD_ALBUM, API.SPORT_ALBUM)
+                .concatMap(s -> getAlbumObservable(context, s))
+                .toList();
+    }
+
+    public static Observable<Album> getAlbumObservable(Context context, String albumName) {
+        return Service.getInstance(context)
+                .getNewClientInstance().getAlbum(albumName.toLowerCase());
+    }
+
     public API getNewClientInstance() {
         return getNewClientInstance(new OkClient(okHttpClient));
     }
@@ -58,4 +73,5 @@ public class Service {
     public Picasso getPicasso() {
         return picassoInstance;
     }
+
 }

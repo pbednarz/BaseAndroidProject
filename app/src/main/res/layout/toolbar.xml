@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
         android:background="?attr/colorPrimary"
+        android:elevation="@dimen/default_elevation"
         android:minHeight="@dimen/abc_action_bar_default_height_material"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextAppearance="@style/AppTheme.Toolbar.Title"
